@@ -1,14 +1,11 @@
 import processing.opengl.*;
 import jmcvideo.*;
-/*import org.gwoptics.graphics.graph2D.Graph2D;
-import org.gwoptics.graphics.graph2D.traces.ILine2DEquation;
-import org.gwoptics.graphics.graph2D.traces.RollingLine2DTrace;*/
 
-final String path = "E:/eclipsews/CrashAnalysis/res/";
+final String path = "C:/Users/bzb/workspace/CrashAnalysis/res/";
 
 String[] lines;
 int frame, offsetY, offsetX, offsetZ, catchup;
-float lastX, lastY, lastZ, lastTime;
+float lastX, lastY, lastZ, lastTime, started;
 JMCMovie myMovie;
 
 /*RollingLine2DTrace r,r2,r3;
@@ -42,9 +39,10 @@ void setup() {
   lastY = float(bits[3]) + 180;
   lastZ = float(bits[4]) + 180;
   lastTime = float(bits[0].substring(5));
-  myMovie = new JMCMovie(this, new File(path + "vlog.3gp"), RGB);
+  myMovie = new JMCMovie(this, new File(path + "vlog.mov"), RGB);
   myMovie.play();
   
+  started = millis();
   /*
         r = new RollingLine2DTrace(new eqX(),500,0.5);
 	r.setTraceColour(0, 255, 0);
@@ -70,9 +68,10 @@ void setup() {
 	g.addTrace(r2);
 	g.addTrace(r3);*/
 }
-int pvw, pvh;
+//int pvw, pvh;
 void draw() {
-  float started = millis();
+  float delayed = millis() - started;
+  started = millis();
   
   //image(myMovie, screen.width/2, 0);
     
@@ -118,7 +117,7 @@ void draw() {
     text("left", -70, 0, 0);*/
   
     float thisTime = float(bits[0].substring(5));
-    float delay = thisTime - lastTime - (millis() - started) + catchup;
+    float delay = thisTime - lastTime - delayed + catchup;
 
     if (delay > 5000) {
       delay = 5000;
@@ -130,7 +129,7 @@ void draw() {
     delay(int(delay*0.65));
     lastTime = thisTime;
   } else {
-    catchup -= int(millis() - started);
+    catchup -= int(delayed);
   }
   
   if (frame < lines.length - 1) {
