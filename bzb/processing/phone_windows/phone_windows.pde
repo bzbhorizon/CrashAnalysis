@@ -7,7 +7,7 @@ import org.gwoptics.graphics.graph2D.traces.RollingLine2DTrace;
 
 private GWindow[] window;
 
-final String path = "C:/Users/bzb/workspace/CrashAnalysis/res/";
+final String path = "E:/eclipsews/CrashAnalysis/res/";
 
 String[] lines;
 int frame, offsetY, offsetX, offsetZ, catchup;
@@ -38,7 +38,7 @@ return offsetZ;
 
 void setup(){
   size(320,240,P2D);
-  myMovie = new JMCMovie(this, new File(path + "vlog.mov"), RGB);
+  myMovie = new JMCMovie(this, new File(path + "vlog.3gp"), RGB);
   myMovie.play();
   
   createWindows();

@@ -1,7 +1,7 @@
 import processing.opengl.*;
 import jmcvideo.*;
 
-final String path = "C:/Users/bzb/workspace/CrashAnalysis/res/";
+final String path = "E:/eclipsews/CrashAnalysis/res/";
 
 String[] lines;
 int frame, offsetY, offsetX, offsetZ, catchup;
@@ -39,7 +39,7 @@ void setup() {
   lastY = float(bits[3]) + 180;
   lastZ = float(bits[4]) + 180;
   lastTime = float(bits[0].substring(5));
-  myMovie = new JMCMovie(this, new File(path + "vlog.mov"), RGB);
+  myMovie = new JMCMovie(this, new File(path + "vlog.3gp"), RGB);
   myMovie.play();
   
   started = millis();
